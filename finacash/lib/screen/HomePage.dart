@@ -351,7 +351,7 @@ class _HomePageState extends State<HomePage> {
                                   topLeft: Radius.circular(15),
                                   topRight: Radius.circular(15))),
                           action: SnackBarAction(
-                            label: "Desfazer",
+                            label: "Undo",
                             textColor: Colors.white,
                             onPressed: () {
                               setState(() {

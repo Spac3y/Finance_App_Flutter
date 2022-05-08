@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/Widgets/AnimatedBottomNavBar.dart';
-import 'package:finacash/Widgets/CardMovimentacoesItem.dart';
+import 'package:finacash/Widgets/CardMovementsItem.dart';
 import 'package:finacash/Widgets/CustomDialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -375,7 +375,7 @@ class _HomePageState extends State<HomePage> {
                           size: width * 0.07,
                         ),
                       ),
-                      child: CardMovimentacoesItem(
+                      child: CardMovementsItem(
                         mov: mov,
                         lastItem:
                             listmovimentacoes[index] == listmovimentacoes.last

@@ -1,6 +1,6 @@
 import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/Widgets/AnimatedBottomNavBar.dart';
-import 'package:finacash/Widgets/CardMovimentacoesItem.dart';
+import 'package:finacash/Widgets/CardMovementsItem.dart';
 import 'package:finacash/screen/ExpensesSummary.dart';
 import 'package:finacash/screen/HomePage.dart';
 import 'package:finacash/screen/ReveneuSummary.dart';

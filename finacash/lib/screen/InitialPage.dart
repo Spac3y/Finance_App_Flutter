@@ -3,7 +3,7 @@ import 'package:finacash/Widgets/AnimatedBottomNavBar.dart';
 import 'package:finacash/Widgets/CardMovimentacoesItem.dart';
 import 'package:finacash/screen/DespesasResumo.dart';
 import 'package:finacash/screen/HomePage.dart';
-import 'package:finacash/screen/ReceitasResumo.dart';
+import 'package:finacash/screen/ReveneuSummary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -58,7 +58,7 @@ class _InitialPageState extends State<InitialPage> {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-    List<Widget> screens = [DespesasResumo(), HomePage(), ReceitasResumo()];
+    List<Widget> screens = [DespesasResumo(), HomePage(), ReveneuSummary()];
 
     //_allMov();
     //print("\nMes atual: " + DateTime.now().month.toString());

@@ -23,7 +23,6 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar>
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Material(
       elevation: 10,
@@ -43,7 +42,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar>
     );
   }
 
-  List<Widget> _buildBarItems(BuildContext contex, double largura) {
+  List<Widget> _buildBarItems(BuildContext contex, double width) {
     List<Widget> _barItems = List();
     for (int i = 0; i < widget.barItems.length; i++) {
       BarItem item = widget.barItems[i];
@@ -58,7 +57,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar>
         },
         child: AnimatedContainer(
           padding: EdgeInsets.symmetric(
-              horizontal: largura * 0.03, vertical: largura * 0.008),
+              horizontal: width * 0.03, vertical: width * 0.008),
           duration: widget.animationDuration,
           decoration: BoxDecoration(
               color: isSelected
@@ -74,12 +73,11 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar>
                 size: widget.barStyle.iconSize,
               ),
               SizedBox(
-                width: largura * 0.01,
+                width: width * 0.01,
               ),
               AnimatedSize(
                 duration: widget.animationDuration,
                 curve: Curves.easeInOut,
-                vsync: this,
                 child: Text(
                   isSelected ? item.text : "",
                   style: TextStyle(

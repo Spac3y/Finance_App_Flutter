@@ -10,7 +10,7 @@ import 'package:intl/intl.dart';
 
 import 'package:table_calendar/table_calendar.dart';
 
-class InicialPage extends StatefulWidget {
+class InitialPage extends StatefulWidget {
   final List<BarItem> barItems = [
     BarItem(
       text: "Expenses",
@@ -23,7 +23,7 @@ class InicialPage extends StatefulWidget {
       color: Colors.indigo,
     ),
     BarItem(
-      text: "Receitas",
+      text: "Revenue",
       iconData: Icons.add_circle_outline,
       color: Colors.teal,
     ),
@@ -36,10 +36,10 @@ class InicialPage extends StatefulWidget {
   ];
 
   @override
-  _InicialPageState createState() => _InicialPageState();
+  _InitialPageState createState() => _InitialPageState();
 }
 
-class _InicialPageState extends State<InicialPage> {
+class _InitialPageState extends State<InitialPage> {
   int selectedBarIndex = 1;
 
   @override
@@ -58,12 +58,12 @@ class _InicialPageState extends State<InicialPage> {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-    List<Widget> telas = [DespesasResumo(), HomePage(), ReceitasResumo()];
+    List<Widget> screens = [DespesasResumo(), HomePage(), ReceitasResumo()];
 
     //_allMov();
     //print("\nMes atual: " + DateTime.now().month.toString());
     return Scaffold(
-      body: telas[selectedBarIndex],
+      body: screens[selectedBarIndex],
       bottomNavigationBar: AnimatedBottomBar(
         barItems: widget.barItems,
         animationDuration: const Duration(milliseconds: 150),

@@ -1,6 +1,6 @@
 import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/screen/HomePage.dart';
-import 'package:finacash/screen/InicialPage.dart';
+import 'package:finacash/screen/InitialPage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

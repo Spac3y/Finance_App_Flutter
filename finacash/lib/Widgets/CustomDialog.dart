@@ -144,7 +144,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.01),
-                    child: Text("expense"),
+                    child: Text("Expense"),
                   )
                 ],
               ),

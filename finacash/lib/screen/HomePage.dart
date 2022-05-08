@@ -10,8 +10,6 @@ import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -99,7 +97,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  
   @override
   void initState() {
     // TODO: implement initState
@@ -210,18 +207,17 @@ class _HomePageState extends State<HomePage> {
                               padding: EdgeInsets.only(left: width * 0.05),
                               child: Container(
                                 width: width * 0.6,
-                                
                                 child: Text(
-                                saldoAtual,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                  saldoAtual,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
                                     color: Colors
                                         .lightBlue[700], //Colors.indigo[400],
                                     fontWeight: FontWeight.bold,
                                     fontSize: _saldoTamanho(saldoAtual),
-                                        //width * 0.1 //_saldoTamanho(saldoAtual)
-                                    ),
-                              ),
+                                    //width * 0.1 //_saldoTamanho(saldoAtual)
+                                  ),
+                                ),
                               ),
                             ),
                             Padding(
@@ -270,7 +266,7 @@ class _HomePageState extends State<HomePage> {
             ),
             TableCalendar(
               calendarController: calendarController,
-              locale: "pt_BR",
+              locale: "en_US",
               headerStyle: HeaderStyle(
                 formatButtonShowsNext: false,
                 formatButtonVisible: false,
@@ -301,7 +297,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Movimentações",
+                      "Movements",
                       style: TextStyle(
                           color: Colors.grey[600], fontSize: width * 0.04),
                     ),
@@ -341,7 +337,7 @@ class _HomePageState extends State<HomePage> {
                             alignment: Alignment.bottomLeft,
                             height: height * 0.05,
                             child: Text(
-                              "Desfazer Ação",
+                              "Undo action",
                               style: TextStyle(
                                   color: Colors.white,
                                   //fontWeight: FontWeight.bold,
@@ -370,7 +366,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       key: ValueKey(mov.id),
                       background: Container(
-                        padding: EdgeInsets.only(right: 10 ,top: width * 0.04),
+                        padding: EdgeInsets.only(right: 10, top: width * 0.04),
                         alignment: Alignment.topRight,
                         color: Colors.red,
                         child: Icon(
@@ -381,7 +377,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: CardMovimentacoesItem(
                         mov: mov,
-                        lastItem: listmovimentacoes[index] == listmovimentacoes.last? true : false,
+                        lastItem:
+                            listmovimentacoes[index] == listmovimentacoes.last
+                                ? true
+                                : false,
                       ),
                     );
                   },
@@ -390,7 +389,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: EdgeInsets.only(top: 20),
-              child: Text( "EEEEEEEEE"),
+              child: Text("EEEEEEEEE"),
             )
           ],
         ),

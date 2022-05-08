@@ -2,21 +2,21 @@ import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/Widgets/TimeLineItem.dart';
 import 'package:flutter/material.dart';
 
-class DespesasResumo extends StatefulWidget {
+class ExpensesSummary extends StatefulWidget {
   @override
-  _DespesasResumoState createState() => _DespesasResumoState();
+  _ExpensesSummaryState createState() => _ExpensesSummaryState();
 }
 
-class _DespesasResumoState extends State<DespesasResumo> {
-  MovimentacoesHelper movimentacoesHelper = MovimentacoesHelper();
-  List<Movimentacoes> listmovimentacoes = List();
+class _ExpensesSummaryState extends State<ExpensesSummary> {
+  MovimentacoesHelper movementsHelper = MovimentacoesHelper();
+  List<Movimentacoes> listmovements = List();
 
   _allMovPorTipo() {
-    movimentacoesHelper.getAllMovimentacoesPorTipo("d").then((list) {
+    movementsHelper.getAllMovimentacoesPorTipo("d").then((list) {
       setState(() {
-        listmovimentacoes = list;
+        listmovements = list;
       });
-      print("All Mov: $listmovimentacoes");
+      print("All Mov: $listmovements");
     });
   }
 
@@ -55,9 +55,9 @@ class _DespesasResumoState extends State<DespesasResumo> {
                 width: width,
                 height: height * 0.74,
                 child: ListView.builder(
-                  itemCount: listmovimentacoes.length,
+                  itemCount: listmovements.length,
                   itemBuilder: (context, index) {
-                    List movReverse = listmovimentacoes.reversed.toList();
+                    List movReverse = listmovements.reversed.toList();
                     Movimentacoes mov = movReverse[index];
 
                     if (movReverse[index] == movReverse.last) {

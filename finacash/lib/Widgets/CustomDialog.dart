@@ -67,7 +67,7 @@ class _CustomDialogState extends State<CustomDialog> {
               Row(
                 children: <Widget>[
                   Text(
-                    "R\$ ",
+                    "RON ",
                     style:
                         TextStyle(color: Colors.white, fontSize: width * 0.06),
                   ),
@@ -123,7 +123,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.01),
-                    child: Text("recipe"),
+                    child: Text("Income"),
                   )
                 ],
               ),

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/Widgets/CardMovementsItem.dart';
 import 'package:finacash/Widgets/CustomDialog.dart';
@@ -26,6 +28,8 @@ class _HomePageState extends State<HomePage> {
   var formatter = new DateFormat('dd-MM-yyyy');
   var formatterCalendar = new DateFormat('MM-yyyy');
   String dataFormatada;
+
+  bool bol = true;
 
   String format(double n) {
     return n.toStringAsFixed(n.truncateToDouble() == n ? 0 : 2);
@@ -268,10 +272,22 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: width * 0.02),
-                      child: Icon(
-                        Icons.sort_rounded,
-                        size: width * 0.07,
-                        color: Colors.grey[400],
+                      child: ElevatedButton(
+                        onPressed: () => setState(() => bol = !bol),
+                        style: ButtonStyle(
+                          elevation: MaterialStateProperty.all(7),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(28.0),
+                            ),
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.sort_rounded,
+                          size: width * 0.07,
+                          color: Colors.grey[400],
+                        ),
                       ),
                     )
                   ],
@@ -285,8 +301,11 @@ class _HomePageState extends State<HomePage> {
                 child: ListView.builder(
                   itemCount: listmovimentacoes.length,
                   itemBuilder: (context, index) {
-                    Movimentacoes mov = listmovimentacoes[index];
-                    Movimentacoes ultMov = listmovimentacoes[index];
+                    int ind =
+                        (bol) ? index : (listmovimentacoes.length - index - 1);
+                    Movimentacoes mov = listmovimentacoes[ind];
+                    Movimentacoes ultMov = listmovimentacoes[ind];
+
                     return Dismissible(
                       direction: DismissDirection.endToStart,
                       onDismissed: (direction) {

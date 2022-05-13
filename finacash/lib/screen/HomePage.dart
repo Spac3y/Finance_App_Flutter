@@ -1,12 +1,7 @@
-import 'dart:ui';
-
 import 'package:finacash/Helper/Movimentacoes_helper.dart';
-import 'package:finacash/Widgets/AnimatedBottomNavBar.dart';
 import 'package:finacash/Widgets/CardMovementsItem.dart';
 import 'package:finacash/Widgets/CustomDialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -23,11 +18,9 @@ class _HomePageState extends State<HomePage> {
   bool recDesp = false;
   final GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
   MovimentacoesHelper movHelper = MovimentacoesHelper();
-  TextEditingController _valorController = TextEditingController();
   CalendarController calendarController;
   MovimentacoesHelper movimentacoesHelper = MovimentacoesHelper();
   List<Movimentacoes> listmovimentacoes = List();
-  List<Movimentacoes> ultimaTarefaRemovida = List();
 
   var dataAtual = new DateTime.now();
   var formatter = new DateFormat('dd-MM-yyyy');
@@ -38,40 +31,12 @@ class _HomePageState extends State<HomePage> {
     return n.toStringAsFixed(n.truncateToDouble() == n ? 0 : 2);
   }
 
-  _addValor() {
-    String valor = _valorController.text;
-    setState(() {
-      saldoAtual = valor;
-    });
-  }
-
   _saldoTamanho(String conteudo) {
     if (conteudo.length > 8) {
       return width * 0.08;
     } else {
       return width * 0.1;
     }
-  }
-
-  _salvar() {
-    dataFormatada = formatter.format(dataAtual);
-    Movimentacoes mov = Movimentacoes();
-    mov.valor = 20.50;
-    mov.tipo = "r";
-    mov.data = "10-03-2020"; //dataFormatada;
-    mov.descricao = "CashBack";
-    MovimentacoesHelper movimentacoesHelper = MovimentacoesHelper();
-    movimentacoesHelper.saveMovimentacao(mov);
-    mov.toString();
-  }
-
-  _allMov() {
-    movimentacoesHelper.getAllMovimentacoes().then((list) {
-      setState(() {
-        listmovimentacoes = list;
-      });
-      print("All Mov: $listmovimentacoes");
-    });
   }
 
   _allMovMes(String data) {
@@ -304,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                       padding: EdgeInsets.only(right: width * 0.02),
                       child: Icon(
-                        Icons.sort,
+                        Icons.sort_rounded,
                         size: width * 0.07,
                         color: Colors.grey[400],
                       ),

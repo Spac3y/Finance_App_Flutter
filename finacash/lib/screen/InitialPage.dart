@@ -1,14 +1,9 @@
-import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/Widgets/AnimatedBottomNavBar.dart';
-import 'package:finacash/Widgets/CardMovementsItem.dart';
 import 'package:finacash/screen/ExpensesSummary.dart';
 import 'package:finacash/screen/HomePage.dart';
 import 'package:finacash/screen/ReveneuSummary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
-
-import 'package:table_calendar/table_calendar.dart';
 
 class InitialPage extends StatefulWidget {
   final List<BarItem> barItems = [

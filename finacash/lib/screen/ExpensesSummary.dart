@@ -1,6 +1,7 @@
 import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/Widgets/TimeLineItem.dart';
 import 'package:flutter/material.dart';
+import 'package:finacash/global.dart' as globals;
 
 class ExpensesSummary extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class ExpensesSummary extends StatefulWidget {
 class _ExpensesSummaryState extends State<ExpensesSummary> {
   MovimentacoesHelper movementsHelper = MovimentacoesHelper();
   List<Movimentacoes> listmovements = List();
+
+  final List<String> wordList = ['Expenses', 'Cheltuieli'];
 
   _allMovPorTipo() {
     movementsHelper.getAllMovimentacoesPorTipo("d").then((list) {
@@ -42,7 +45,7 @@ class _ExpensesSummaryState extends State<ExpensesSummary> {
             Padding(
               padding: EdgeInsets.only(left: width * 0.05, top: width * 0.2),
               child: Text(
-                "Expenses",
+                wordList[globals.languageNumber],
                 style: TextStyle(
                     color: Colors.white, //Colors.grey[400],
                     fontWeight: FontWeight.bold,

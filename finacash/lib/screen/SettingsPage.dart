@@ -72,52 +72,49 @@ class _SettingsPageState extends State<SettingsPage> {
                 SizedBox(
                   height: height * 0.07,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    print('1');
-                  },
-                  child: Container(
-                    width: width * 1,
-                    height: height * 0.06,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Opacity(
-                            opacity: 0.75,
-                            child: Text(
-                              "Theme",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w400),
-                            ),
+                Container(
+                  width: width * 1,
+                  height: height * 0.06,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Opacity(
+                          opacity: 0.75,
+                          child: Text(
+                            "Theme",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w400),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Opacity(
-                            opacity: 0.75,
-                            // child: Icon(Icons.arrow_right),
-                            child: FlutterSwitch(
-                              width: 55,
-                              activeIcon: Icon(Icons.dark_mode),
-                              activeColor: Colors.black,
-                              inactiveIcon: Icon(Icons.light_mode),
-                              inactiveColor: Colors.grey,
-                              onToggle: (value) =>
-                                  setState(() => globals.darkMode = value),
-                              value: globals.darkMode,
-                            ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Opacity(
+                          opacity: 0.75,
+                          // child: Icon(Icons.arrow_right),
+                          child: FlutterSwitch(
+                            width: 55,
+                            activeIcon: Icon(Icons.dark_mode),
+                            activeColor: Colors.black,
+                            inactiveIcon: Icon(Icons.light_mode),
+                            inactiveColor: Colors.grey,
+                            onToggle: (value) =>
+                                setState(() => globals.darkMode = value),
+                            value: globals.darkMode,
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 Divider(),
                 GestureDetector(
                   onTap: () {
-                    print('1');
+                    setState(() {
+                      globals.languageNumber = (globals.languageNumber + 1) % 2;
+                    });
                   },
                   child: Container(
                     width: width * 1,
@@ -150,7 +147,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 Divider(),
                 GestureDetector(
                   onTap: () {
-                    print('1');
+                    setState(() {
+                      globals.currencyNumber = (globals.currencyNumber + 1) % 2;
+                    });
                   },
                   child: Container(
                     width: width * 1,

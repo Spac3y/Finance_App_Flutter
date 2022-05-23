@@ -1,6 +1,7 @@
 import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/Widgets/CardMovementsItem.dart';
 import 'package:finacash/Widgets/CustomDialog.dart';
+import 'package:finacash/screen/SettingsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -120,7 +121,7 @@ class _HomePageState extends State<HomePage> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
-    Future.delayed(const Duration(milliseconds: 20), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       setState(() {
         bottomColor = Colors.blue;
       });
@@ -152,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                   child: AnimatedContainer(
                     width: double.infinity,
                     height: height * 0.28, //250,
-                    duration: Duration(seconds: 2),
+                    duration: Duration(seconds: 5),
                     onEnd: () => setState(
                       () {
                         index = index + 1;
@@ -179,12 +180,29 @@ class _HomePageState extends State<HomePage> {
                 Positioned(
                   top: width * 0.20, //70
                   left: width * 0.07, //30,
-                  child: Text(
-                    // TODO
-                    "FinaCash",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: width * 0.074 //30
+                  child: Row(
+                    children: [
+                      Text(
+                        // TODO
+                        "FinaCash",
+                        style: TextStyle(
+                            color: Colors.white, fontSize: width * 0.074 //30
+                            ),
+                      ),
+                      SizedBox(
+                        width: width * 0.461,
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => SettingsPage()))),
+                        icon: Icon(
+                          Icons.settings_outlined,
+                          color: Colors.white,
                         ),
+                      )
+                    ],
                   ),
                 ),
                 Positioned(
@@ -328,7 +346,7 @@ class _HomePageState extends State<HomePage> {
                       child: ElevatedButton(
                         onPressed: () => setState(() => bol = !bol),
                         style: ButtonStyle(
-                          elevation: MaterialStateProperty.all(7),
+                          elevation: MaterialStateProperty.all(5.5),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
@@ -339,7 +357,7 @@ class _HomePageState extends State<HomePage> {
                         child: Icon(
                           Icons.sort_rounded,
                           size: width * 0.07,
-                          color: Colors.grey[400],
+                          color: Colors.white,
                         ),
                       ),
                     )

@@ -1,11 +1,11 @@
-import 'dart:ffi';
-
 import 'package:finacash/Helper/Movimentacoes_helper.dart';
 import 'package:finacash/Widgets/CardMovementsItem.dart';
 import 'package:finacash/Widgets/CustomDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:finacash/global.dart' as globals;
+import 'dart:math';
 
 class HomePage extends StatefulWidget {
   @override
@@ -30,6 +30,31 @@ class _HomePageState extends State<HomePage> {
   String dataFormatada;
 
   bool bol = true;
+
+  final List<Color> colorList = [
+    Colors.blue,
+    Colors.green,
+    Colors.orange,
+    Colors.purple,
+  ];
+
+  final List<Alignment> alignmentList = [
+    Alignment.bottomLeft,
+    Alignment.bottomRight,
+    Alignment.topRight,
+    Alignment.topLeft,
+  ];
+
+  int index = 0;
+  Color bottomColor = Colors.red;
+  Color topColor = Colors.yellow;
+  Alignment begin = Alignment.bottomLeft;
+  Alignment end = Alignment.topRight;
+
+  final List<String> wordList = ['Total', 'Total'];
+  final List<String> calendarLang = ['en_US', 'ro_RO'];
+  final List<String> wordList1 = ["Undo action", "Anuleaza"];
+  final List<String> wordList2 = ["History", "Istoric"];
 
   String format(double n) {
     return n.toStringAsFixed(n.truncateToDouble() == n ? 0 : 2);
@@ -71,9 +96,9 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     calendarController = CalendarController();
-    if (DateTime.now().month != false) {
-      //saldoAtual = "1259";
-    }
+    // if (DateTime.now().month != false) {
+    //saldoAtual = "1259";
+    // }
     //_salvar();
     dataFormatada = formatterCalendar.format(dataAtual);
     print(dataFormatada);
@@ -95,6 +120,12 @@ class _HomePageState extends State<HomePage> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
+    Future.delayed(const Duration(milliseconds: 20), () {
+      setState(() {
+        bottomColor = Colors.blue;
+      });
+    });
+
     _allMovMes(dataFormatada);
     return Scaffold(
       key: _scafoldKey,
@@ -113,21 +144,43 @@ class _HomePageState extends State<HomePage> {
                   height: height * 0.334, //300,
                   color: Colors.white,
                 ),
+                // TODO : change this to custuom live color
                 Positioned(
                   top: 0,
                   left: 0,
                   right: 0,
-                  child: Container(
-                      width: double.infinity,
-                      height: height * 0.28, //250,
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlue[700], //Colors.indigo[400],
-                      )),
+                  child: AnimatedContainer(
+                    width: double.infinity,
+                    height: height * 0.28, //250,
+                    duration: Duration(seconds: 2),
+                    onEnd: () => setState(
+                      () {
+                        index = index + 1;
+                        // animate the color
+                        bottomColor = colorList[index % colorList.length];
+                        topColor = colorList[
+                            (index + Random().nextInt(colorList.length)) %
+                                colorList.length];
+
+                        //// animate the alignment
+                        begin = alignmentList[index % alignmentList.length];
+                        end = alignmentList[(index + 1) % alignmentList.length];
+                      },
+                    ),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: begin,
+                        end: end,
+                        colors: [bottomColor, topColor],
+                      ),
+                    ),
+                  ),
                 ),
                 Positioned(
-                  top: width * 0.18, //70
+                  top: width * 0.20, //70
                   left: width * 0.07, //30,
                   child: Text(
+                    // TODO
                     "FinaCash",
                     style: TextStyle(
                         color: Colors.white, fontSize: width * 0.074 //30
@@ -162,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                             bottom: width * 0.02,
                           ),
                           child: Text(
-                            "Total",
+                            wordList[globals.languageNumber],
                             style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: width * 0.05),
@@ -235,7 +288,7 @@ class _HomePageState extends State<HomePage> {
             ),
             TableCalendar(
               calendarController: calendarController,
-              locale: "en_US",
+              locale: calendarLang[globals.languageNumber],
               headerStyle: HeaderStyle(
                 formatButtonShowsNext: false,
                 formatButtonVisible: false,
@@ -266,7 +319,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Movements",
+                      wordList2[globals.languageNumber],
                       style: TextStyle(
                           color: Colors.grey[600], fontSize: width * 0.04),
                     ),
@@ -321,7 +374,7 @@ class _HomePageState extends State<HomePage> {
                             alignment: Alignment.bottomLeft,
                             height: height * 0.05,
                             child: Text(
-                              "Undo action",
+                              wordList1[globals.languageNumber],
                               style: TextStyle(
                                   color: Colors.white,
                                   //fontWeight: FontWeight.bold,
@@ -335,7 +388,7 @@ class _HomePageState extends State<HomePage> {
                                   topLeft: Radius.circular(15),
                                   topRight: Radius.circular(15))),
                           action: SnackBarAction(
-                            label: "Undo",
+                            label: wordList1[globals.languageNumber],
                             textColor: Colors.white,
                             onPressed: () {
                               setState(() {

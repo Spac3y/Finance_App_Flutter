@@ -27,11 +27,11 @@ class InitialPage extends StatefulWidget {
       iconData: Icons.add_circle_outline,
       color: Colors.teal,
     ),
-    BarItem(
-      text: "Search",
-      iconData: Icons.search,
-      // color: Colors.yellow.shade900,
-    ),
+    // BarItem(
+    //   text: "Search",
+    //   iconData: Icons.search,
+    // color: Colors.yellow.shade900,
+    // ),
   ];
 
   @override

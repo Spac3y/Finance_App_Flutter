@@ -3,6 +3,7 @@ import 'package:finacash/screen/HomePage.dart';
 import 'package:finacash/screen/InitialPage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:finacash/global.dart' as globals;
 
 class CustomDialog extends StatefulWidget {
   final Movimentacoes mov;
@@ -23,6 +24,15 @@ class _CustomDialogState extends State<CustomDialog> {
   TextEditingController _controllerDesc = TextEditingController();
 
   MovimentacoesHelper _movHelper = MovimentacoesHelper();
+
+  final List<String> currencyList = ['EUR', 'RON'];
+  final List<String> wordList = ['Add Values', 'Adauga'];
+  final List<String> wordList1 = ['Income', 'Venit'];
+  final List<String> wordList2 = ['Expense', 'Cheltuiala'];
+  final List<String> wordList3 = ['Description', 'Descriere'];
+  final List<String> wordList4 = ['Cancel', 'Anuleaza'];
+  final List<String> wordList5 = ['Confirm', 'Confirma'];
+  final List<String> wordList6 = ['Edit', 'Editeaza'];
 
   @override
   void initState() {
@@ -55,7 +65,7 @@ class _CustomDialogState extends State<CustomDialog> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(width * 0.050)),
         title: Text(
-          "Add Values",
+          wordList[globals.languageNumber],
           textAlign: TextAlign.center,
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
@@ -67,7 +77,7 @@ class _CustomDialogState extends State<CustomDialog> {
               Row(
                 children: <Widget>[
                   Text(
-                    "RON ",
+                    currencyList[globals.currencyNumber],
                     style:
                         TextStyle(color: Colors.white, fontSize: width * 0.06),
                   ),
@@ -123,7 +133,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.01),
-                    child: Text("Income"),
+                    child: Text(wordList1[globals.languageNumber]),
                   )
                 ],
               ),
@@ -144,7 +154,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.01),
-                    child: Text("Expense"),
+                    child: Text(wordList2[globals.languageNumber]),
                   )
                 ],
               ),
@@ -157,7 +167,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   textAlign: TextAlign.start,
                   decoration: new InputDecoration(
                     //hintText: "descrição",
-                    labelText: "Description",
+                    labelText: wordList3[globals.languageNumber],
                     labelStyle: TextStyle(color: Colors.white54),
                     //hintStyle: TextStyle(color: Colors.grey[400]),
                     contentPadding: EdgeInsets.only(
@@ -191,7 +201,7 @@ class _CustomDialogState extends State<CustomDialog> {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Cancel",
+                        wordList4[globals.languageNumber],
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -247,7 +257,9 @@ class _CustomDialogState extends State<CustomDialog> {
                         ),
                         child: Center(
                           child: Text(
-                            edit == false ? "Confirm" : "Edit",
+                            edit == false
+                                ? wordList5[globals.languageNumber]
+                                : wordList6[globals.languageNumber],
                             style: TextStyle(
                                 color: _colorTextButtom,
                                 fontWeight: FontWeight.bold,

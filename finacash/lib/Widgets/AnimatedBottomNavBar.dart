@@ -25,11 +25,11 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar>
     double width = MediaQuery.of(context).size.width;
 
     return Material(
-      elevation: 10,
+      elevation: 20,
       child: Padding(
         padding: EdgeInsets.only(
-          bottom: width * 0.07, //32.0,
-          top: width * 0.04, //16.0,
+          bottom: width * 0.06, //32.0,
+          top: width * 0.05, //16.0,
           left: width * 0.04, // 16.0,
           right: width * 0.04, // 16.0,
         ),

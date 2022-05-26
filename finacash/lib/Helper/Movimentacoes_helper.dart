@@ -108,6 +108,31 @@ class MovimentacoesHelper {
     for (Map m in listMap) {
       listMovimentacoes.add(Movimentacoes.fromMap(m));
     }
+
+    return listMovimentacoes;
+  }
+
+  Future<List> getAllMovimentacoesPorDespesa() async {
+    Database dbMovimentacoes = await db;
+    List listMap = await dbMovimentacoes.rawQuery(
+        "SELECT * FROM $movimentacaoTABLE WHERE $tipoColumn LIKE '%d%'");
+    List<Movimentacoes> listMovimentacoes = List();
+
+    for (Map m in listMap) {
+      listMovimentacoes.add(Movimentacoes.fromMap(m));
+    }
+    return listMovimentacoes;
+  }
+
+  Future<List> getAllMovimentacoesPorRenda() async {
+    Database dbMovimentacoes = await db;
+    List listMap = await dbMovimentacoes.rawQuery(
+        "SELECT * FROM $movimentacaoTABLE WHERE $tipoColumn LIKE '%r%'");
+    List<Movimentacoes> listMovimentacoes = List();
+
+    for (Map m in listMap) {
+      listMovimentacoes.add(Movimentacoes.fromMap(m));
+    }
     return listMovimentacoes;
   }
 

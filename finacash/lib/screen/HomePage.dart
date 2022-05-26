@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:finacash/global.dart' as globals;
-import 'dart:math';
+import 'dart:math' as math;
 
 class HomePage extends StatefulWidget {
   @override
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   var formatterCalendar = new DateFormat('MM-yyyy');
   String dataFormatada;
 
-  bool bol = true;
+  bool bol = false;
 
   final List<Color> colorList = [
     Colors.blue,
@@ -54,7 +54,8 @@ class _HomePageState extends State<HomePage> {
 
   final List<String> wordList = ['Total', 'Total'];
   final List<String> calendarLang = ['en_US', 'ro_RO'];
-  final List<String> wordList1 = ["Undo action", "Anuleaza"];
+  final List<String> wordList0 = ["Item deleted", "Item sters"];
+  final List<String> wordList1 = ["Undo", "Anuleaza"];
   final List<String> wordList2 = ["History", "Istoric"];
 
   String format(double n) {
@@ -160,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                         // animate the color
                         bottomColor = colorList[index % colorList.length];
                         topColor = colorList[
-                            (index + Random().nextInt(colorList.length)) %
+                            (index + math.Random().nextInt(colorList.length)) %
                                 colorList.length];
 
                         //// animate the alignment
@@ -190,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                       ),
                       SizedBox(
-                        width: width * 0.461,
+                        width: width * 0.46,
                       ),
                       IconButton(
                         onPressed: () => Navigator.push(
@@ -200,6 +201,7 @@ class _HomePageState extends State<HomePage> {
                         icon: Icon(
                           Icons.settings_outlined,
                           color: Colors.white,
+                          size: 30,
                         ),
                       )
                     ],
@@ -354,11 +356,20 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        child: Icon(
-                          Icons.sort_rounded,
-                          size: width * 0.07,
-                          color: Colors.white,
-                        ),
+                        child: (bol)
+                            ? Icon(
+                                Icons.sort,
+                                size: width * 0.07,
+                                color: Colors.white,
+                              )
+                            : Transform(
+                                alignment: Alignment.center,
+                                transform: Matrix4.rotationX(math.pi),
+                                child: Icon(
+                                  Icons.sort,
+                                  size: width * 0.07,
+                                ),
+                              ),
                       ),
                     )
                   ],
@@ -392,7 +403,7 @@ class _HomePageState extends State<HomePage> {
                             alignment: Alignment.bottomLeft,
                             height: height * 0.05,
                             child: Text(
-                              wordList1[globals.languageNumber],
+                              wordList0[globals.languageNumber],
                               style: TextStyle(
                                   color: Colors.white,
                                   //fontWeight: FontWeight.bold,
@@ -412,12 +423,12 @@ class _HomePageState extends State<HomePage> {
                               setState(() {
                                 listmovimentacoes.insert(index, ultMov);
                               });
-
                               movHelper.saveMovimentacao(ultMov);
                             },
                           ),
                         );
-                        _scafoldKey.currentState.showSnackBar(snackBar);
+                        // _scafoldKey.currentState.showSnackBar(snackBar);
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },
                       key: ValueKey(mov.id),
                       background: Container(

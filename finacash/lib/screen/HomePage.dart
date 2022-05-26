@@ -22,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   var totalRenda;
   var width;
   var height;
-  bool recDesp = false;
   bool infoBoard = false;
   final GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
   MovimentacoesHelper movHelper = MovimentacoesHelper();
@@ -70,6 +69,8 @@ class _HomePageState extends State<HomePage> {
   final List<String> wordList0 = ["Item deleted", "Item sters"];
   final List<String> wordList1 = ["Undo", "Anuleaza"];
   final List<String> wordList2 = ["History", "Istoric"];
+  final List<String> wordList3 = ["All Income", "TotalVenit"];
+  final List<String> wordList4 = ["All Expenses", "Total Cheltuieli"];
 
   String format(double n) {
     return n.toStringAsFixed(n.truncateToDouble() == n ? 0 : 2);
@@ -140,7 +141,7 @@ class _HomePageState extends State<HomePage> {
         totalRenda = listmovimentacoesRenda
             .map((item) => item.valor)
             .reduce((a, b) => a + b);
-        totalRenda = format(totalRenda).toString();
+        saldoRenda = format(totalRenda).toString();
       } else {
         setState(() {
           listmovimentacoesRenda.clear();
@@ -148,10 +149,157 @@ class _HomePageState extends State<HomePage> {
           saldoRenda = totalRenda.toString();
         });
       }
-
+      // print(saldoRendaj);
       //print("TOTAL: $total");
       //print("All MovMES: $listmovimentacoes");
     });
+  }
+
+  Widget incomePlusExpensesAllWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(
+              left: width * 0.05,
+              right: width * 0.05,
+              top: width * 0.04,
+              bottom: width * 0.02,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  wordList3[globals.languageNumber],
+                  style: TextStyle(
+                      color: Colors.green[400], fontSize: width * 0.047),
+                ),
+                Text(
+                  wordList4[globals.languageNumber],
+                  style: TextStyle(
+                      color: Colors.red[400], fontSize: width * 0.047),
+                )
+              ],
+            ),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: width * 0.05),
+                child: Text(
+                  saldoRenda,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: Colors.lightGreen[500], //Colors.indigo[400],
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.08
+                      //width * 0.1 //_saldoTamanho(saldoAtual)
+                      ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: width * 0.05),
+                child: Text(
+                  saldoDespesa,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: Colors.red, //Colors.indigo[400],
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.08
+                      //width * 0.1 //_saldoTamanho(saldoAtual)
+                      ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget normalDashView() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(
+            left: width * 0.05,
+            top: width * 0.04,
+            bottom: width * 0.02,
+          ),
+          child: Text(
+            wordList[globals.languageNumber],
+            style: TextStyle(color: Colors.grey[600], fontSize: width * 0.05),
+          ),
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: width * 0.05),
+              child: Container(
+                width: width * 0.6,
+                child: Text(
+                  saldoAtual,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.lightBlue[700], //Colors.indigo[400],
+                    fontWeight: FontWeight.bold,
+                    fontSize: _saldoTamanho(saldoAtual),
+                    //width * 0.1 //_saldoTamanho(saldoAtual)
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: width * 0.04),
+              child: GestureDetector(
+                onTap: () {
+                  _dialogAddRecDesp();
+                  /* Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddReceita()));
+                 */
+                },
+                child: Container(
+                  width: width * 0.12,
+                  height: width * 0.12, //65,
+                  decoration: BoxDecoration(
+                      color: Colors.lightBlue[700], //Colors.indigo[400],
+                      borderRadius: BorderRadius.circular(50),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 7,
+                          offset: Offset(2, 2),
+                        )
+                      ]),
+                  child: Icon(
+                    Icons.add,
+                    size: width * 0.07,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+        SizedBox(
+          height: height * 0.008,
+        )
+      ],
+    );
   }
 
   @override
@@ -193,6 +341,7 @@ class _HomePageState extends State<HomePage> {
 
     _allMovMes(dataFormatada);
     _allExpenses();
+    _allIncome();
     return Scaffold(
       key: _scafoldKey,
       body: SingleChildScrollView(
@@ -287,104 +436,25 @@ class _HomePageState extends State<HomePage> {
                   child: GestureDetector(
                     onTap: () => setState(() => infoBoard = !infoBoard),
                     child: Container(
-                      height: height * 0.16, //150,
-                      width: width * 0.1, // 70,
-                      decoration: BoxDecoration(
-                          // TODO
-                          color: (globals.darkMode)
-                              ? backgroundColor
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey[400],
-                                blurRadius: 5,
-                                offset: Offset(0, 2))
-                          ]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: width * 0.05,
-                              top: width * 0.04,
-                              bottom: width * 0.02,
-                            ),
-                            child: Text(
-                              wordList[globals.languageNumber],
-                              style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: width * 0.05),
-                            ),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(left: width * 0.05),
-                                child: Container(
-                                  width: width * 0.6,
-                                  child: Text(
-                                    saldoAtual,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Colors
-                                          .lightBlue[700], //Colors.indigo[400],
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: _saldoTamanho(saldoAtual),
-                                      //width * 0.1 //_saldoTamanho(saldoAtual)
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: width * 0.04),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    _dialogAddRecDesp();
-                                    /* Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => AddReceita()));
-                                   */
-                                  },
-                                  child: Container(
-                                    width: width * 0.12,
-                                    height: width * 0.12, //65,
-                                    decoration: BoxDecoration(
-                                        color: Colors.lightBlue[
-                                            700], //Colors.indigo[400],
-                                        borderRadius: BorderRadius.circular(50),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey,
-                                            blurRadius: 7,
-                                            offset: Offset(2, 2),
-                                          )
-                                        ]),
-                                    child: Icon(
-                                      Icons.add,
-                                      // TODO
-
-                                      size: width * 0.07,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: height * 0.008,
-                          )
-                        ],
-                      ),
-                    ),
+                        height: height * 0.16, //150,
+                        width: width * 0.1, // 70,
+                        decoration: BoxDecoration(
+                            // TODO
+                            color: (globals.darkMode)
+                                ? backgroundColor
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[400],
+                                  blurRadius: 5,
+                                  offset: Offset(0, 2))
+                            ]),
+                        child: (infoBoard)
+                            ? incomePlusExpensesAllWidget()
+                            : normalDashView()),
                   ),
-                )
+                ),
               ],
             ),
             TableCalendar(

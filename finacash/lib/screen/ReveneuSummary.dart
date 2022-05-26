@@ -53,7 +53,7 @@ class _ReveneuSummaryState extends State<ReveneuSummary> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: width * 0.03, top: width * 0.08),
+              padding: EdgeInsets.only(left: width * 0.03, top: width * 0.03),
               child: SizedBox(
                 width: width,
                 height: height * 0.74,

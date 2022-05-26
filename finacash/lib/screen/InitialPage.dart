@@ -48,9 +48,13 @@ class _InitialPageState extends State<InitialPage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         //systemNavigationBarColor: Colors.lightBlue[700], // navigation bar color
         //statusBarColor: Colors.lightBlue[700],
-        systemNavigationBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.light // status bar color
+        systemNavigationBarIconBrightness:
+            (globals.darkMode) ? Brightness.dark : Brightness.light,
+        systemNavigationBarColor:
+            (globals.darkMode) ? Colors.black : Colors.white,
+        statusBarIconBrightness: (globals.darkMode)
+            ? Brightness.dark
+            : Brightness.light // status bar color
         ));
 
     SystemChrome.setPreferredOrientations(
@@ -62,15 +66,19 @@ class _InitialPageState extends State<InitialPage> {
     //print("\nMes atual: " + DateTime.now().month.toString());
     return Scaffold(
       body: screens[selectedBarIndex],
-      bottomNavigationBar: AnimatedBottomBar(
-        barItems: widget.barItems,
-        animationDuration: const Duration(milliseconds: 150),
-        barStyle: BarStyle(fontSize: width * 0.045, iconSize: width * 0.07),
-        onBarTap: (index) {
-          setState(() {
-            selectedBarIndex = index;
-          });
-        },
+      bottomNavigationBar: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 80,
+        child: AnimatedBottomBar(
+          barItems: widget.barItems,
+          animationDuration: const Duration(milliseconds: 150),
+          barStyle: BarStyle(fontSize: width * 0.045, iconSize: width * 0.07),
+          onBarTap: (index) {
+            setState(() {
+              selectedBarIndex = index;
+            });
+          },
+        ),
       ),
     );
   }

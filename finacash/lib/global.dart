@@ -1,3 +1,3 @@
 int languageNumber = 0;
 bool darkMode = false;
-int currencyNumber = 0;
+int currencyNumber = 1;

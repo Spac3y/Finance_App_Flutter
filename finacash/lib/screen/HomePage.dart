@@ -401,7 +401,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         // TODO
-                        "Monday Report",
+                        "MondayReport",
                         style: TextStyle(
                             // TODO
                             color: (globals.darkMode)
@@ -411,7 +411,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                       ),
                       SizedBox(
-                        width: width * 0.46,
+                        width: width * 0.28,
                       ),
                       IconButton(
                         onPressed: () => Navigator.push(

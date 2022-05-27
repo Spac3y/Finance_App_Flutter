@@ -401,7 +401,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         // TODO
-                        "FinaCash",
+                        "Monday Report",
                         style: TextStyle(
                             // TODO
                             color: (globals.darkMode)

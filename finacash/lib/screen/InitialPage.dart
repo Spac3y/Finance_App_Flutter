@@ -1,10 +1,10 @@
-import 'package:finacash/Widgets/AnimatedBottomNavBar.dart';
-import 'package:finacash/screen/ExpensesSummary.dart';
-import 'package:finacash/screen/HomePage.dart';
-import 'package:finacash/screen/ReveneuSummary.dart';
+import 'package:MondayReport/Widgets/AnimatedBottomNavBar.dart';
+import 'package:MondayReport/screen/ExpensesSummary.dart';
+import 'package:MondayReport/screen/HomePage.dart';
+import 'package:MondayReport/screen/ReveneuSummary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import "package:finacash/global.dart" as globals;
+import "package:MondayReport/global.dart" as globals;
 
 final List<String> wordList = ['Expenses', 'Cheltuieli'];
 final List<String> word1List = ['Home', 'Acasa'];

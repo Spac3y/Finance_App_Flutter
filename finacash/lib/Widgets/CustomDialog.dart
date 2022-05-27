@@ -1,7 +1,7 @@
-import 'package:finacash/Helper/Movimentacoes_helper.dart';
+import 'package:MondayReport/Helper/Movimentacoes_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:finacash/global.dart' as globals;
+import 'package:MondayReport/global.dart' as globals;
 
 class CustomDialog extends StatefulWidget {
   final Movimentacoes mov;

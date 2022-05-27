@@ -1,4 +1,4 @@
-import 'package:finacash/global.dart' as globals;
+import 'package:MondayReport/global.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:path_provider/path_provider.dart';

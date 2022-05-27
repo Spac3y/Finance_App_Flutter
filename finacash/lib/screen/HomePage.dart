@@ -1,11 +1,11 @@
-import 'package:finacash/Helper/Movimentacoes_helper.dart';
-import 'package:finacash/Widgets/CardMovementsItem.dart';
-import 'package:finacash/Widgets/CustomDialog.dart';
-import 'package:finacash/screen/SettingsPage.dart';
+import 'package:MondayReport/Helper/Movimentacoes_helper.dart';
+import 'package:MondayReport/Widgets/CardMovementsItem.dart';
+import 'package:MondayReport/Widgets/CustomDialog.dart';
+import 'package:MondayReport/screen/SettingsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:finacash/global.dart' as globals;
+import 'package:MondayReport/global.dart' as globals;
 import 'dart:math' as math;
 
 class HomePage extends StatefulWidget {

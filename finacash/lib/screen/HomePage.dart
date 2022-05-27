@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
   final List<String> wordList0 = ["Item deleted", "Item sters"];
   final List<String> wordList1 = ["Undo", "Anuleaza"];
   final List<String> wordList2 = ["History", "Istoric"];
-  final List<String> wordList3 = ["All Income", "TotalVenit"];
+  final List<String> wordList3 = ["All Income", "Total Venit"];
   final List<String> wordList4 = ["All Expenses", "Total Cheltuieli"];
 
   String format(double n) {

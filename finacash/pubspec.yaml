@@ -1,4 +1,4 @@
-name: finacash
+name: MondayReport
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -27,6 +27,7 @@ dependencies:
   table_calendar: ^2.2.2
   intl: ^0.16.1
   flutter_switch: ^0.3.2
+  path_provider: ^2.0.10
   
   
 

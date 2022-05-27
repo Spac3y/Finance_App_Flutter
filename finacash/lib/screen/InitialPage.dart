@@ -8,7 +8,7 @@ import "package:finacash/global.dart" as globals;
 
 final List<String> wordList = ['Expenses', 'Cheltuieli'];
 final List<String> word1List = ['Home', 'Acasa'];
-final List<String> word2List = ['Reveneu', 'Venituri'];
+final List<String> word2List = ['Revenue', 'Venituri'];
 
 class InitialPage extends StatefulWidget {
   final List<BarItem> barItems = [

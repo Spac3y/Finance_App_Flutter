@@ -420,8 +420,6 @@ class _HomePageState extends State<HomePage> {
                                 builder: ((context) => SettingsPage()))),
                         icon: Icon(
                           Icons.settings_outlined,
-                          // TODO
-
                           color: Colors.white,
                           size: 30,
                         ),
@@ -429,8 +427,9 @@ class _HomePageState extends State<HomePage> {
                       IconButton(
                         onPressed: () {},
                         icon: Icon(
-                          Icons.import_export_outlined,
+                          Icons.file_download,
                           color: Colors.white,
+                          size: 33.5,
                         ),
                       )
                     ],

@@ -411,7 +411,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                       ),
                       SizedBox(
-                        width: width * 0.28,
+                        width: width * 0.14,
                       ),
                       IconButton(
                         onPressed: () => Navigator.push(
@@ -424,6 +424,13 @@ class _HomePageState extends State<HomePage> {
 
                           color: Colors.white,
                           size: 30,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.import_export_outlined,
+                          color: Colors.white,
                         ),
                       )
                     ],

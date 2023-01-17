@@ -7,6 +7,9 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:MondayReport/global.dart' as globals;
 import 'dart:math' as math;
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'package:push/push.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -425,7 +428,36 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          Future<List<dynamic>> futureOutputList =
+                              movHelper.getAllMovimentacoes();
+                          List<dynamic> outputList = await futureOutputList;
+
+                          final Directory directory =
+                              await getApplicationDocumentsDirectory();
+                          final File file =
+                              File('${directory.path}/output.csv+--');
+
+                          String outputString = '';
+                          outputString += "Id,Date,Description,Category\n";
+                          for (int i = 0; i < outputList.length; i++) {
+                            String formatedDate =
+                                outputList[i].data.split('-')[1] +
+                                    '/' +
+                                    outputList[i].data.split('-')[0];
+                            outputString +=
+                                "${outputList[i].id},$formatedDate,${outputList[i].descricao},\n";
+                          }
+                          print(outputString);
+
+                          await file.writeAsString(outputString);
+
+                          var snackBar = SnackBar(
+                            content: Text(
+                                "Wrote all Transactions in Documents folder as: output.csv!"),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        },
                         icon: Icon(
                           Icons.file_download,
                           color: Colors.white,

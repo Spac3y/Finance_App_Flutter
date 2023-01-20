@@ -34,7 +34,6 @@ class _CustomDialogState extends State<CustomDialog> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     if (widget.mov != null) {

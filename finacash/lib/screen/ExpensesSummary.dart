@@ -25,7 +25,6 @@ class _ExpensesSummaryState extends State<ExpensesSummary> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _allMovPorTipo();
   }

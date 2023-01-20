@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-import 'package:csv/csv.dart';
-
 final String movimentacaoTABLE = "movimentacaoTABLE";
 final String idColumn = "idColumn";
 final String dataColumn = "dataColumn";

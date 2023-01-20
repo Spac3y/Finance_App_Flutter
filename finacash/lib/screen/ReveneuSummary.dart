@@ -25,7 +25,6 @@ class _ReveneuSummaryState extends State<ReveneuSummary> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _allMovPorTipo();
   }

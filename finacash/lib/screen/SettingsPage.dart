@@ -1,7 +1,6 @@
 import 'package:MondayReport/global.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:path_provider/path_provider.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -29,7 +28,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     globals.readGlobal();
   }
